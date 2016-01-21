@@ -1,0 +1,18 @@
+{
+    "name": "koenigseggposche/yii2-sms",
+    "description": "A sms extension for yii2 frameworks",
+    "type": "yii2-extension",
+    "keywords": ["yii2", "extension", "sms"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "liwei",
+            "email": "koenigseggposche@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "koenigseggposche\\sms\\": ""
+        }
+    }
+}
