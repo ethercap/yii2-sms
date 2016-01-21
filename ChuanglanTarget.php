@@ -1,6 +1,7 @@
 <?php
 namespace koenigseggposche\sms;
 
+use Yii;
 use yii\base\Component;
 use yii\base\InvalidParamException;
 use koenigseggposche\sms\Target;
@@ -59,7 +60,7 @@ class ChuanglanTarget extends Component implements Target
 
     public function send($mobile, $message)
     {
-        $postArr = array (
+        $postArr = array(
             'account' => $this->account,
             'pswd' => $this->pswd,
             'needstatus' => $this->needstatus,
@@ -70,10 +71,11 @@ class ChuanglanTarget extends Component implements Target
         );
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->url);
-        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
         curl_setopt($ch, CURLOPT_TIMEOUT, 3);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postArr));
         $data = curl_exec($ch);
         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);

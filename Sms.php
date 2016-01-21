@@ -38,7 +38,7 @@ class Sms extends Component
             \Yii::error('No sms targets configured');
             return false;
         }
-        $target = $this->target[rand(count($this->targets))];
+        $target = $this->targets[rand(0, count($this->targets) - 1)];
         return $target->send($mobiles, $message);
     }
 }
