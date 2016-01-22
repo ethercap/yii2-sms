@@ -11,7 +11,6 @@ class GuoduTarget extends Component implements Target
 
     private $OperID;
     private $OperPass;
-    private $ContentType;
 
     public function init()
     {
@@ -34,12 +33,6 @@ class GuoduTarget extends Component implements Target
         } else {
             throw new InvalidParamException("Please configure param: guodu OperPass");
         }
-
-        if (isset(Yii::$app->params['guodu']['ContentType'])) {
-            $this->ContentType = Yii::$app->params['guodu']['ContentType'];
-        } else {
-            throw new InvalidParamException("Please configure param: guodu ContentType");
-        }
     }
 
     public function send($mobile, $message)
@@ -47,7 +40,7 @@ class GuoduTarget extends Component implements Target
         $postArr = array(
             'OperID' => $this->OperID,
             'OperPass' => $this->OperPass,
-            'ContentType' => $this->ContentType,
+            'ContentType' => 8,
             'DesMobile' => $mobile,
             'Content' => urlencode($message),
         );
@@ -64,4 +57,3 @@ class GuoduTarget extends Component implements Target
         return ($httpcode >= 200 && $httpcode < 300) ? $data : false;
     }
 }
-

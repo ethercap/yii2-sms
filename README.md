@@ -7,6 +7,7 @@ It can be used to send sms through different channels in an easy way.
 Channels it support:
 
 创蓝(Chuanglan)
+国都(Guodu)
 
 Installation
 ------------
@@ -55,15 +56,15 @@ Configure Yii2 param:
 
 ```php
 [
-    'components' => [
-        'sms' => [
-            'class' => 'koenigseggposche\sms\Sms',
-            'targets' => [
-                [
-                    'class' => 'koenigseggposche\sms\target\ChuanglanTarget',
-                ],
-            ],
-        ],
+    'chuanglan' => [
+        'url' => 'http://222.73.117.158/msg/HttpBatchSendSM',
+        'account' => 'YOUR_ACCOUNT',
+        'pswd' => 'YOUR_PASSWORD',
+    ],
+    'guodu' => [
+        'url' => 'http://221.179.180.158:9008/HttpQuickProcess/submitMessageAll',
+        'OperID' => 'YOUR_ACCOUNT',
+        'OperPass' => 'YOUR_PASSWORD',
     ],
 ];
 ```

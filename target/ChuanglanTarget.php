@@ -12,9 +12,6 @@ class ChuanglanTarget extends Component implements Target
     private $url;
     private $account;
     private $pswd;
-    private $needstatus;
-    private $product;
-    private $extno;
 
     public function init()
     {
@@ -37,24 +34,6 @@ class ChuanglanTarget extends Component implements Target
         } else {
             throw new InvalidParamException("Please configure param: chuanglan pswd");
         }
-
-        if (isset(Yii::$app->params['chuanglan']['needstatus'])) {
-            $this->needstatus = Yii::$app->params['chuanglan']['needstatus'];
-        } else {
-            throw new InvalidParamException("Please configure param: chuanglan needstatus");
-        }
-
-        if (isset(Yii::$app->params['chuanglan']['product'])) {
-            $this->product = Yii::$app->params['chuanglan']['product'];
-        } else {
-            throw new InvalidParamException("Please configure param: chuanglan product");
-        }
-
-        if (isset(Yii::$app->params['chuanglan']['extno'])) {
-            $this->extno = Yii::$app->params['chuanglan']['extno'];
-        } else {
-            throw new InvalidParamException("Please configure param: chuanglan extno");
-        }
     }
 
     public function send($mobile, $message)
@@ -62,9 +41,9 @@ class ChuanglanTarget extends Component implements Target
         $postArr = array(
             'account' => $this->account,
             'pswd' => $this->pswd,
-            'needstatus' => $this->needstatus,
-            'product' => $this->product,
-            'extno' => $this->extno,
+            'needstatus' => 'true',
+            'product' => '',
+            'extno' => '',
             'msg' => $message,
             'mobile' => $mobile,
         );
