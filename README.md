@@ -1,13 +1,16 @@
 Yii2 sms
 ============
+
 This is a sms extension of Yii2 framewoks.
 
-It can be used to send sms through different channels in an easy way.
+It can be used to send sms with different service providers in an easy way.
 
-Channels it support:
+SMS Service Providers list:
 
-创蓝(Chuanglan)
-国都(Guodu)
+```
+创蓝(Chuanglan)：koenigseggposche\sms\target\ChuanglanTarget
+国都(Guodu)：koenigseggposche\sms\target\GuoduTarget
+```
 
 Installation
 ------------
@@ -70,9 +73,10 @@ Configure Yii2 param:
 ```
 
 Send sms:
+
 ```php
 <?php
-    $mobile = '13588888888';
+    $mobile = '13500000000';
     $message = 'test message';
     Yii::$app->sms->send($mobile, $message);
 ?>
