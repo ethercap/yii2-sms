@@ -31,10 +31,48 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
+Configure Yii2 component:
 
 ```php
-<?php
+[
+    'components' => [
+        'sms' => [
+            'class' => 'koenigseggposche\sms\Sms',
+            'targets' => [
+                [
+                    'class' => 'koenigseggposche\sms\target\ChuanglanTarget',
+                ],
+                [
+                    'class' => 'koenigseggposche\sms\target\GuoduTarget',
+                ],
+            ],
+        ],
+    ],
+];
+```
 
+Configure Yii2 param:
+
+```php
+[
+    'components' => [
+        'sms' => [
+            'class' => 'koenigseggposche\sms\Sms',
+            'targets' => [
+                [
+                    'class' => 'koenigseggposche\sms\target\ChuanglanTarget',
+                ],
+            ],
+        ],
+    ],
+];
+```
+
+Send sms:
+```php
+<?php
+    $mobile = '13588888888';
+    $message = 'test message';
+    Yii::$app->sms->send($mobile, $message);
 ?>
 ```

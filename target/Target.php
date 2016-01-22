@@ -1,6 +1,6 @@
 <?php
 
-namespace koenigseggposche\sms;
+namespace koenigseggposche\sms\target;
 
 interface Target
 {

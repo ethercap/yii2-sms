@@ -1,10 +1,9 @@
 <?php
-namespace koenigseggposche\sms;
+namespace koenigseggposche\sms\target;
 
 use Yii;
 use yii\base\Component;
 use yii\base\InvalidParamException;
-use koenigseggposche\sms\Target;
 
 class ChuanglanTarget extends Component implements Target
 {
