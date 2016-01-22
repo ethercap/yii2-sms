@@ -7,8 +7,7 @@ use yii\base\InvalidParamException;
 
 class GuoduTarget extends Component implements Target
 {
-    private $curl;
-
+    private $url;
     private $OperID;
     private $OperPass;
 

@@ -7,8 +7,6 @@ use yii\base\InvalidParamException;
 
 class ChuanglanTarget extends Component implements Target
 {
-    private $curl;
-
     private $url;
     private $account;
     private $pswd;
