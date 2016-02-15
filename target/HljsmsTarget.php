@@ -10,6 +10,8 @@ class HljsmsTarget extends Component implements Target
     private $url;
     private $type;
     private $policy;
+    private $appid;
+    private $appsecret;
 
     public function init()
     {
@@ -32,6 +34,18 @@ class HljsmsTarget extends Component implements Target
         } else {
             throw new InvalidParamException("Please configure param: hljsms policy");
         }
+
+        if (isset(Yii::$app->params['hljsms']['appid'])) {
+            $this->appid = Yii::$app->params['hljsms']['appid'];
+        } else {
+            throw new InvalidParamException("Please configure param: hljsms appid");
+        }
+
+        if (isset(Yii::$app->params['hljsms']['appsecret'])) {
+            $this->appsecret = Yii::$app->params['hljsms']['appsecret'];
+        } else {
+            throw new InvalidParamException("Please configure param: hljsms appsecret");
+        }
     }
 
     public function send($mobile, $message)
@@ -41,9 +55,21 @@ class HljsmsTarget extends Component implements Target
             'policy' => $this->policy,
             'mobile' => $mobile,
             'content' => $message,
-            'timeStamp' => time(),
-            'sign' => '',
         );
+
+        $date = gmdate('D, j M Y H:i:s T');
+        $method = 'POST';
+        $urlinfo = parse_url($this->url);
+        if (!isset($urlinfo['path'])) {
+            return;
+        }
+        $uri = $urlinfo['path'];
+        $string_to_sign = "$method$uri$date";
+        $signature = base64_encode(hash_hmac('sha1', $string_to_sign, $this->appsecret, true));
+        $authorization = "HLJ " . $this->appid . ":" . $signature;
+        $headers[] = "Date: $date";
+        $headers[] = "Authorization: $authorization";
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -51,10 +77,10 @@ class HljsmsTarget extends Component implements Target
         curl_setopt($ch, CURLOPT_TIMEOUT, 3);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postArr));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         $data = curl_exec($ch);
         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
         return ($httpcode >= 200 && $httpcode < 300) ? $data : false;
     }
 }
-
