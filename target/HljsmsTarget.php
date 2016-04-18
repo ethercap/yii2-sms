@@ -7,46 +7,11 @@ use yii\base\InvalidParamException;
 
 class HljsmsTarget extends Component implements Target
 {
-    private $url;
-    private $type;
-    private $policy;
-    private $appid;
-    private $appsecret;
-
-    public function init()
-    {
-        parent::init();
-
-        if (isset(Yii::$app->params['hljsms']['url'])) {
-            $this->url = Yii::$app->params['hljsms']['url'];
-        } else {
-            throw new InvalidParamException("Please configure param: hljsms url");
-        }
-
-        if (isset(Yii::$app->params['hljsms']['type'])) {
-            $this->type = Yii::$app->params['hljsms']['type'];
-        } else {
-            throw new InvalidParamException("Please configure param: hljsms type");
-        }
-
-        if (isset(Yii::$app->params['hljsms']['policy'])) {
-            $this->policy = Yii::$app->params['hljsms']['policy'];
-        } else {
-            throw new InvalidParamException("Please configure param: hljsms policy");
-        }
-
-        if (isset(Yii::$app->params['hljsms']['appid'])) {
-            $this->appid = Yii::$app->params['hljsms']['appid'];
-        } else {
-            throw new InvalidParamException("Please configure param: hljsms appid");
-        }
-
-        if (isset(Yii::$app->params['hljsms']['appsecret'])) {
-            $this->appsecret = Yii::$app->params['hljsms']['appsecret'];
-        } else {
-            throw new InvalidParamException("Please configure param: hljsms appsecret");
-        }
-    }
+    public $url;
+    public $type;
+    public $policy;
+    public $appid;
+    public $appsecret;
 
     public function send($mobile, $message)
     {
