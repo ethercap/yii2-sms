@@ -5,6 +5,7 @@ namespace koenigseggposche\sms;
 use Yii;
 use yii\base\Component;
 use yii\base\InvalidParamException;
+use yii\base\Object;
 
 class Sms extends Component
 {
@@ -35,10 +36,19 @@ class Sms extends Component
     public function send($mobiles, $message)
     {
         if (count($this->targets) == 0) {
-            \Yii::error('No sms targets configured');
+            Yii::error('No sms targets configured', 'sms.send');
             return false;
         }
         $target = $this->targets[rand(0, count($this->targets) - 1)];
-        return $target->send($mobiles, $message);
+        if (!$ret = $target->send($mobiles, $message)) {
+            if ($target instanceof Object) {
+                Yii::error($target::className() . ' send ' . $mobiles . ' failed', 'sms.send');
+            } else {
+                Yii::error('Target send ' . $mobiles . ' failed', 'sms.send');
+            }
+            return false;
+        }
+        Yii::info($mobiles . ':' . $message, 'sms.send');
+        return true;
     }
 }
