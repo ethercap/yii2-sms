@@ -1,5 +1,5 @@
 <?php
-namespace koenigseggposche\sms\target;
+namespace ethercap\sms\target;
 
 use Yii;
 use yii\base\Component;

@@ -8,8 +8,8 @@ It can be used to send sms with different service providers in an easy way.
 SMS Service Providers list:
 
 ```
-创蓝(Chuanglan)：koenigseggposche\sms\target\ChuanglanTarget
-国都(Guodu)：koenigseggposche\sms\target\GuoduTarget
+创蓝(Chuanglan)：ethercap\sms\target\ChuanglanTarget
+国都(Guodu)：ethercap\sms\target\GuoduTarget
 ```
 
 Installation
@@ -20,13 +20,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require koenigseggposche/yii2-sms "dev-master"
+php composer.phar require ethercap/yii2-sms "dev-master"
 ```
 
 or add
 
 ```
-"koenigseggposche/yii2-sms": "dev-master"
+"ethercap/yii2-sms": "dev-master"
 ```
 
 to the require section of your `composer.json` file.
@@ -41,13 +41,13 @@ Configure Yii2 component:
 [
     'components' => [
         'sms' => [
-            'class' => 'koenigseggposche\sms\Sms',
+            'class' => 'ethercap\sms\Sms',
             'targets' => [
                 [
-                    'class' => 'koenigseggposche\sms\target\ChuanglanTarget',
+                    'class' => 'ethercap\sms\target\ChuanglanTarget',
                 ],
                 [
-                    'class' => 'koenigseggposche\sms\target\GuoduTarget',
+                    'class' => 'ethercap\sms\target\GuoduTarget',
                 ],
             ],
         ],

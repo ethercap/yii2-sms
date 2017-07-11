@@ -1,6 +1,6 @@
 <?php
 
-namespace koenigseggposche\sms;
+namespace ethercap\sms;
 
 use Yii;
 use yii\base\Component;

@@ -1,6 +1,6 @@
 <?php
 
-namespace koenigseggposche\sms\target;
+namespace ethercap\sms\target;
 
 interface Target
 {

@@ -1,5 +1,5 @@
 {
-    "name": "koenigseggposche/yii2-sms",
+    "name": "ethercap/yii2-sms",
     "description": "A sms extension for yii2 frameworks",
     "type": "yii2-extension",
     "keywords": ["yii2", "extension", "sms"],
@@ -7,12 +7,12 @@
     "authors": [
         {
             "name": "liwei",
-            "email": "koenigseggposche@gmail.com"
+            "email": "ethercap@gmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "koenigseggposche\\sms\\": ""
+            "ethercap\\sms\\": ""
         }
     }
 }
